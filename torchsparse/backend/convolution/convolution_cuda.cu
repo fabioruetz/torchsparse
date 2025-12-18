@@ -547,7 +547,7 @@ at::Tensor convolution_forward_cuda_latest(
 
   // all gather
   AT_DISPATCH_FLOATING_TYPES_AND_HALF(
-      in_featscalar_type(), "convolution_forward_cuda", ([&] {
+      in_feat.scalar_type(), "convolution_forward_cuda", ([&] {
         gather_all_kernel_pad_sep_with_mask<scalar_t>
             <<<ceil((double)(n_in_feats * n_in_channels) /
                     (256 << (sizeof(scalar_t) == 2) + 2)),
@@ -779,7 +779,7 @@ at::Tensor convolution_forward_cuda_fallback(
     // gather n_active_feats dense features from N sparse input features with c
     // feature dimensions
     AT_DISPATCH_FLOATING_TYPES_AND_HALF(
-        in_featscalar_type(), "convolution_forward_cuda", ([&] {
+        in_feat.scalar_type(), "convolution_forward_cuda", ([&] {
           gather_kernel<scalar_t>
               <<<ceil((double)(n_active_feats * n_in_channels) / 256), 256>>>(
                   n_active_feats, n_in_feats, n_in_channels,
