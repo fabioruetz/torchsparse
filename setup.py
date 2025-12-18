@@ -48,7 +48,7 @@ setup(
             "torchsparse.backend", sources, extra_compile_args=extra_compile_args
         )
     ],
-    url="https://github.com/mit-han-lab/torchsparse",
+
     install_requires=[
         "numpy",
         "backports.cached_property",
@@ -58,9 +58,6 @@ setup(
         "rootpath",
         "torch",
         "torchvision"
-    ],
-    dependency_links=[
-        'https://download.pytorch.org/whl/cu118'
     ],
     cmdclass={"build_ext": BuildExtension},
     zip_safe=False,
